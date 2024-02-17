@@ -1,0 +1,16 @@
+---
+layout: layout.vto
+url: /
+title: top
+noindex: true
+---
+<div id="search"></div>
+<header data-pagefind-ignore="all">
+</header>
+<main data-pagefind-ignore="all">
+<ul id="timeline">
+{{ for entry of search.pages("date=desc") }}
+  <a href="{{entry.url}}">{{entry.title}}</a>
+{{ /for }}
+</ul>
+</main>

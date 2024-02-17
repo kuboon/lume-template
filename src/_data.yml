@@ -1,0 +1,8 @@
+site_name: fixme
+layout: layout.vto
+metas:
+  site: "=site_name"
+  title: "=title"
+  twitter: "@kuboon"
+  lang: ja
+  generator: true
