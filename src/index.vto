@@ -9,8 +9,8 @@ noindex: true
 </header>
 <main data-pagefind-ignore="all">
 <ul id="timeline">
-{{ for entry of search.pages("date=desc") }}
-  <a href="{{entry.url}}">{{entry.title}}</a>
+{{ for entry of search.pages("type=post", "date=desc") }}
+  <li><a href="{{entry.url}}">{{entry.title}}</a></li>
 {{ /for }}
 </ul>
 </main>
