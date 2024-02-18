@@ -1,3 +1,3 @@
 # Your task
-- [ ] [[src/_data.yml]] set `site_name` and `twitter`
+- [ ] [[src/_data.yml]] set `description` and `metas`
 - [ ] /src/favicon.svg

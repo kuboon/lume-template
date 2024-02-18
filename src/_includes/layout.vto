@@ -2,11 +2,11 @@
 <html lang="{{metas.lang}}">
 <head>
   <meta charset="UTF-8">
-  <title>{{ title }} | {{site_name}}</title>
+  <title>{{ title }} | {{metas.site}}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/style/main.css">
-  <link rel="alternate" type="application/feed+json" title="{{site_name}}" href="{{ 'feed.json' |> url(true) }}" />
-  <link rel="alternate" type="application/rss+xml" title="{{site_name}}" href="{{ 'feed.rss' |> url(true) }}">
+  <link rel="alternate" type="application/feed+json" title="{{metas.site}}" href="{{ 'feed.json' |> url(true) }}" />
+  <link rel="alternate" type="application/rss+xml" title="{{metas.site}}" href="{{ 'feed.rss' |> url(true) }}">
 </head>
 <body>
   {{ content }}

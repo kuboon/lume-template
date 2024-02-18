@@ -20,8 +20,6 @@ import source_maps from "lume/plugins/source_maps.ts";
 import transformImages from "lume/plugins/transform_images.ts";
 import vento from "lume/plugins/vento.ts";
 
-const title = "fixme"
-
 const site = lume({
   prettyUrls: false,
   src: "src",
@@ -35,7 +33,11 @@ site.use(esbuild());
 site.use(favicon());
 site.use(feed({
   output: ["feed.rss", "feed.json"],
-  info: { title, lang: 'ja' }
+  query: "noindex!=true",
+  info: {
+    title: "=metas.site",
+    description: "=description",
+  }
 }));
 // site.use(filter_pages({}));
 site.use(inline());

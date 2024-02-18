@@ -1,8 +1,9 @@
-site_name: fixme
-layout: layout.vto
+description: fixme src/_data.yml#description
 metas:
-  site: "=site_name"
-  title: "=title"
-  twitter: "@kuboon"
+  site: fixme src/_data.yml#metas.site
   lang: ja
+  twitter: "@kuboon"
   generator: true
+  title: "=title"
+  description: "=description"
+layout: layout.vto
