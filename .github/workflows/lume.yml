@@ -24,9 +24,6 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-    - name: Configure Pages
-      id: configure
-      uses: actions/configure-pages@v4
     - name: Setup Deno environment
       uses: denoland/setup-deno@v1
       with:
@@ -39,6 +36,9 @@ jobs:
       with:
         path: ${{ steps.deno-dir.outputs.denoDir }}
         key: ${{ runner.os }}-deno
+    - name: Configure Pages
+      id: configure
+      uses: actions/configure-pages@v4
     - name: lume build
       run: deno task build --location=${{steps.configure.outputs.base_url}}
     - name: Upload artifact
@@ -55,8 +55,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-    - name: Configure Pages
-      uses: actions/configure-pages@v4
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4
