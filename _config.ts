@@ -1,6 +1,5 @@
 import lume from "lume/mod.ts";
 import date from "lume/plugins/date.ts";
-// import decap_cms from "lume/plugins/decap_cms.ts";
 import esbuild from "lume/plugins/esbuild.ts";
 import favicon from "lume/plugins/favicon.ts";
 import feed from "lume/plugins/feed.ts";
@@ -28,7 +27,6 @@ const site = lume({
 });
 
 site.use(date());
-// site.use(decap_cms());
 site.use(esbuild());
 site.use(favicon());
 site.use(feed({
