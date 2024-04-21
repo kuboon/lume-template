@@ -12,7 +12,7 @@ import nav from "lume/plugins/nav.ts";
 import pagefind from "lume/plugins/pagefind.ts";
 import picture from "lume/plugins/picture.ts";
 import postcss from "lume/plugins/postcss.ts";
-import prism from "lume/plugins/prism.ts";
+// import prism from "lume/plugins/prism.ts";
 // import relations from "lume/plugins/relations.ts";
 import sitemap from "lume/plugins/sitemap.ts";
 import source_maps from "lume/plugins/source_maps.ts";
@@ -48,7 +48,7 @@ site.use(nav());
 site.use(pagefind());
 site.use(picture());
 site.use(postcss());
-site.use(prism());
+// site.use(prism());
 // site.use(relations());
 site.use(sitemap({
   query: "noindex!=true",
