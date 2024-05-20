@@ -1,4 +1,5 @@
-import lumeCMS, { GitHub } from "lume/cms.ts";
+import lumeCMS from "lume/cms/mod.ts";
+import GitHub from "lume/cms/storage/github.ts";
 import { Octokit } from "npm:octokit";
 import "@std/dotenv/load";
 
