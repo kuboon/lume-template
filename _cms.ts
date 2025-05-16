@@ -1,16 +1,17 @@
 import lumeCMS from "lume/cms/mod.ts";
 import GitHub from "lume/cms/storage/github.ts";
 import { Octokit } from "npm:octokit";
-import "@std/dotenv/load";
+
+const client = new Octokit({
+  auth: Deno.env.get("GITHUB_TOKEN"), // A personal access token,
+});
 
 const githubOpts = {
   owner: "kuboon",
   repo: "lume-template",
   path: "src",
   branch: "cms",
-  client: new Octokit({
-    auth: Deno.env.get("GITHUB_TOKEN"), // A personal access token,
-  })
+  client
 };
 
 const cms = lumeCMS();
@@ -30,7 +31,7 @@ cms.document("Site info", "src:_data.yml", [
   },
 ]);
 
-const postFields = [
+const postFields: Lume.CMS.Field[] = [
   "draft: checkbox",
   "title: text",
   "content: markdown",

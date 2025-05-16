@@ -9,6 +9,7 @@
   <link rel="alternate" type="application/rss+xml" title="{{metas.site}}" href="{{ 'feed.rss' |> url(true) }}">
 </head>
 <body>
+  {{ comp.ThemeSelector() }}
   {{ content }}
 </body>
 </html>

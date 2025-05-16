@@ -8,10 +8,10 @@ import inline from "lume/plugins/inline.ts";
 import metas from "lume/plugins/metas.ts";
 import modifyUrls from "lume/plugins/modify_urls.ts";
 import nav from "lume/plugins/nav.ts";
-// import ondemand from "lume/plugins/on_demand.ts"
+import jsx from "lume/plugins/jsx.ts";
 import pagefind from "lume/plugins/pagefind.ts";
 import picture from "lume/plugins/picture.ts";
-import postcss from "lume/plugins/postcss.ts";
+import tailwindcss from "lume/plugins/tailwindcss.ts";
 // import prism from "lume/plugins/prism.ts";
 // import relations from "lume/plugins/relations.ts";
 import sitemap from "lume/plugins/sitemap.ts";
@@ -29,6 +29,7 @@ const site = lume({
 site.use(date());
 site.use(esbuild());
 site.use(favicon());
+site.use(jsx());
 site.use(feed({
   output: ["feed.rss", "feed.json"],
   query: "noindex!=true",
@@ -38,24 +39,23 @@ site.use(feed({
   }
 }));
 // site.use(filter_pages({}));
-site.use(inline());
 site.use(metas());
 site.use(modifyUrls({
   fn: (url: string) => url.replace(/\.html$/, ""),
 }))
 site.use(nav());
-// site.use(ondemand());
 site.use(pagefind());
+site.use(tailwindcss());
+site.add("style/main.css")
+site.use(source_maps());
 site.use(picture());
-site.use(postcss());
+site.use(transformImages());
+site.use(inline());
 // site.use(prism());
 // site.use(relations());
 site.use(sitemap({
   query: "noindex!=true",
 }));
-site.use(source_maps());
-site.use(transformImages());
 site.use(vento());
 
-site.copyRemainingFiles();
 export default site;
