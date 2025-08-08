@@ -1,42 +1,76 @@
 import lumeCMS from "lume/cms/mod.ts";
 import GitHub from "lume/cms/storage/github.ts";
+// import Kv from "lume/cms/storage/kv.ts";
 import { Octokit } from "npm:octokit";
 
-const client = new Octokit({
-  auth: Deno.env.get("GITHUB_TOKEN"), // A personal access token,
+const cms = lumeCMS({
+  site: {
+    name: "CMS デモのCMS",
+    description: "ここでブログのコンテンツを編集できます",
+    url: "https://example.com",
+    body: `
+    <p>Long text, for instructions or other content that you want to make it visible in the homepage</p>
+    `,
+  },
 });
 
-const githubOpts = {
-  owner: "kuboon",
-  repo: "lume-template",
-  path: "src",
-  branch: "cms",
-  client
-};
+cms.storage(
+  "src",
+  new GitHub({
+    client: new Octokit({ auth: Deno.env.get("GITHUB_TOKEN") }),
+    owner: "fixme",
+    repo: "fixme",
+  }),
+);
 
-const cms = lumeCMS();
+// const kv = await Deno.openKv();
 
-cms.storage("gh", new GitHub(githubOpts));
+// cms.storage("kv", new Kv({ kv }));
+cms.upload("post_files", "src:posts/files");
 
-cms.document("Site info", "src:_data.yml", [
-  "description: text",
-  {
-    name: "metas",
-    type: "object",
-    fields: [
-      "site: text",
-      "lang: text",
-      "twitter: text"
-    ]
+cms.document({
+  name: "landing-page",
+  store: "src:index.yml",
+  fields: [
+    {
+      name: "hero",
+      type: "object",
+      fields: [
+        {
+          name: "title",
+          type: "text",
+        },
+        {
+          name: "content",
+          type: "markdown",
+        },
+      ],
+    }
+  ],
+});
+cms.collection({
+  name: "posts",
+  store: "src:posts/*.md",
+  documentName: (data) => {
+    const date = new Date(data.published as number).toTemporalInstant().toZonedDateTimeISO("Asia/Tokyo").toPlainDate();
+    return `${date}-${data.title}.md`;
   },
-]);
-
-const postFields: Lume.CMS.Field[] = [
-  "draft: checkbox",
-  "title: text",
-  "content: markdown",
-]
-cms.collection("Posts local", "src:posts/*.md", postFields)
-cms.collection("Posts", "gh:posts/*.md", postFields)
-
+  fields: [
+    {
+      name: "title",
+      type: "text",
+      value: new Date().toTimeString().slice(0, 5),
+    },
+    {
+      name: "published",
+      type: "datetime",
+      value: new Date(),
+    },
+    {
+      name: "content",
+      type: "markdown",
+      upload: "post_files",
+    },
+  ],
+});
 export default cms;

@@ -27,7 +27,7 @@ const site = lume({
 });
 
 site.use(date());
-site.use(esbuild());
+// site.use(esbuild());
 site.use(favicon());
 site.use(jsx());
 site.use(feed({
@@ -40,9 +40,9 @@ site.use(feed({
 }));
 // site.use(filter_pages({}));
 site.use(metas());
-site.use(modifyUrls({
-  fn: (url: string) => url.replace(/\.html$/, ""),
-}))
+// site.use(modifyUrls({
+//   fn: (url: string) => url.replace(/\.html$/, ""),
+// }))
 site.use(nav());
 site.use(pagefind());
 site.use(tailwindcss());
@@ -50,6 +50,7 @@ site.add("style/main.css")
 site.use(source_maps());
 site.use(picture());
 site.use(transformImages());
+site.add("/posts/files")
 site.use(inline());
 // site.use(prism());
 // site.use(relations());

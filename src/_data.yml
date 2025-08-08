@@ -1,6 +1,6 @@
 description: fixme src/_data.yml#description
 metas:
-  site: fixme src/_data.yml#metas.site
+  site: CMSデモサイト
   lang: ja
   twitter: "@kuboon"
   generator: true
