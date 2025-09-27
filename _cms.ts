@@ -1,7 +1,8 @@
+import { kvStorage } from "./kv_storage.ts";
 import lumeCMS from "lume/cms/mod.ts";
 import GitHub from "lume/cms/storage/github.ts";
-// import Kv from "lume/cms/storage/kv.ts";
 import { Octokit } from "npm:octokit";
+
 
 const cms = lumeCMS({
   site: {
@@ -25,7 +26,7 @@ cms.storage(
 
 // const kv = await Deno.openKv();
 
-// cms.storage("kv", new Kv({ kv }));
+cms.storage("kv", kvStorage);
 cms.upload("post_files", "src:posts/files");
 
 cms.document({
