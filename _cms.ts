@@ -1,7 +1,10 @@
-import { kvStorage } from "./kv_storage.ts";
 import lumeCMS from "lume/cms/mod.ts";
 import GitHub from "lume/cms/storage/github.ts";
-import { Octokit } from "npm:octokit";
+import Kv from "lume/cms/storage/kv.ts";
+
+const kv = await Deno.openKv();
+export const kvStorage = new Kv({ kv });
+
 
 const cms = lumeCMS({
   site: {
@@ -16,17 +19,26 @@ const cms = lumeCMS({
 
 cms.storage(
   "src",
-  new GitHub({
-    client: new Octokit({ auth: Deno.env.get("GITHUB_TOKEN") }),
-    owner: "fixme",
-    repo: "fixme",
-  }),
+  GitHub("kuboon/lume-template", Deno.env.get("GITHUB_TOKEN")!)
 );
-
-// const kv = await Deno.openKv();
 
 cms.storage("kv", kvStorage);
 cms.upload("post_files", "src:posts/files");
+
+cms.collection({
+  name: "news",
+  store: "kv:news",
+  fields: [
+    {
+      name: "title",
+      type: "text",
+    },
+    {
+      name: "content",
+      type: "text",
+    },
+  ],
+});
 
 cms.document({
   name: "landing-page",

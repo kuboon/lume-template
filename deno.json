@@ -2,7 +2,7 @@
   "tasks": {
     "lume": {
       "description": "Run Lume command",
-      "command": "deno run -P=lume lume/cli.ts"
+      "command": "deno run --env -P=lume lume/cli.ts"
     },
     "build": {
       "description": "Build the site for production",
@@ -11,8 +11,7 @@
     "serve": {
       "description": "Run and serve the site for development",
       "command": "deno task lume -s"
-    },
-    "cms": "deno task lume cms"
+    }
   },
   "compilerOptions": {
     "types": [
