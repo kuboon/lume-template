@@ -23,7 +23,7 @@ noindex: true
         <div class="card-body">
           <a href="{{entry.url}}" class="after:absolute after:inset-0">
             <h2 class="card-title">{{ entry.title }}</h2>
-            <p>{{ entry.published |> date('y年M月d日') }}</p>
+            <p>{{ entry.published |> date("y年M月d日") }}</p>
           </a>
         </div>
       </div>

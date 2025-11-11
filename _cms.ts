@@ -3,7 +3,6 @@ import lumeCMS from "lume/cms/mod.ts";
 import GitHub from "lume/cms/storage/github.ts";
 import { Octokit } from "npm:octokit";
 
-
 const cms = lumeCMS({
   site: {
     name: "CMS デモのCMS",
@@ -46,14 +45,15 @@ cms.document({
           type: "markdown",
         },
       ],
-    }
+    },
   ],
 });
 cms.collection({
   name: "posts",
   store: "src:posts/*.md",
   documentName: (data) => {
-    const date = new Date(data.published as number).toTemporalInstant().toZonedDateTimeISO("Asia/Tokyo").toPlainDate();
+    const date = new Date(data.published as number).toTemporalInstant()
+      .toZonedDateTimeISO("Asia/Tokyo").toPlainDate();
     return `${date}-${data.title}.md`;
   },
   fields: [

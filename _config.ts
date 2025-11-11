@@ -23,7 +23,7 @@ const site = lume({
   prettyUrls: false,
   src: "src",
 }, {
-  markdown: { options: { breaks: true }, plugins: [], }
+  markdown: { options: { breaks: true }, plugins: [] },
 });
 
 site.use(date());
@@ -36,7 +36,7 @@ site.use(feed({
   info: {
     title: "=metas.site",
     description: "=description",
-  }
+  },
 }));
 // site.use(filter_pages({}));
 site.use(metas());
@@ -46,11 +46,11 @@ site.use(metas());
 site.use(nav());
 site.use(pagefind());
 site.use(tailwindcss());
-site.add("style/main.css")
+site.add("style/main.css");
 site.use(source_maps());
 site.use(picture());
 site.use(transformImages());
-site.add("/posts/files")
+site.add("/posts/files");
 site.use(inline());
 // site.use(prism());
 // site.use(relations());

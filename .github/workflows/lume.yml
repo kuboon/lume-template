@@ -22,29 +22,29 @@ jobs:
       contents: read
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-    - name: Setup Deno environment
-      uses: denoland/setup-deno@v1
-      with:
-        deno-version: v2.x
-    - name: get denoDir
-      run: echo "denoDir=$(deno info --json | jq -r .denoDir)/*" >> "$GITHUB_OUTPUT"
-      id: deno-dir
-    - name: Cache
-      uses: actions/cache@v4
-      with:
-        path: ${{ steps.deno-dir.outputs.denoDir }}
-        key: ${{ runner.os }}-deno
-    - name: Configure Pages
-      id: configure
-      uses: actions/configure-pages@v4
-    - name: lume build
-      run: deno task build --location=${{steps.configure.outputs.base_url}}
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: '_site'
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Deno environment
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v2.x
+      - name: get denoDir
+        run: echo "denoDir=$(deno info --json | jq -r .denoDir)/*" >> "$GITHUB_OUTPUT"
+        id: deno-dir
+      - name: Cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.deno-dir.outputs.denoDir }}
+          key: ${{ runner.os }}-deno
+      - name: Configure Pages
+        id: configure
+        uses: actions/configure-pages@v4
+      - name: lume build
+        run: deno task build --location=${{steps.configure.outputs.base_url}}
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "_site"
   deploy:
     needs: build
     permissions:
@@ -55,6 +55,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

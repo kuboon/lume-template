@@ -1,1 +1,1 @@
-import "lume/cli.ts"
+import "lume/cli.ts";
