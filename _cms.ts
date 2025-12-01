@@ -5,7 +5,6 @@ import Kv from "lume/cms/storage/kv.ts";
 const kv = await Deno.openKv();
 export const kvStorage = new Kv({ kv });
 
-
 const cms = lumeCMS({
   site: {
     name: "CMS デモのCMS",
@@ -19,7 +18,7 @@ const cms = lumeCMS({
 
 cms.storage(
   "src",
-  GitHub("kuboon/lume-template", Deno.env.get("GITHUB_TOKEN")!)
+  GitHub("kuboon/lume-template", Deno.env.get("GITHUB_TOKEN")!),
 );
 
 cms.storage("kv", kvStorage);

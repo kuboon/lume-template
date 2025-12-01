@@ -7,3 +7,12 @@ metas:
   title: "=title"
   description: "=description"
 layout: layout.vto
+jsonLd:
+  "@type": WebSite
+  url: /
+  headline: lume
+  name: "=title"
+  description: "=description"
+  author:
+    "@type": Person
+    name: kuboon

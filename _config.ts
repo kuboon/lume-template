@@ -5,10 +5,11 @@ import favicon from "lume/plugins/favicon.ts";
 import feed from "lume/plugins/feed.ts";
 // import filter_pages from "lume/plugins/filter_pages.ts";
 import inline from "lume/plugins/inline.ts";
-import metas from "lume/plugins/metas.ts";
-import modifyUrls from "lume/plugins/modify_urls.ts";
-import nav from "lume/plugins/nav.ts";
 import jsx from "lume/plugins/jsx.ts";
+import jsonLd from "lume/plugins/json_ld.ts";
+import modifyUrls from "lume/plugins/modify_urls.ts";
+import metas from "lume/plugins/metas.ts";
+import nav from "lume/plugins/nav.ts";
 import pagefind from "lume/plugins/pagefind.ts";
 import picture from "lume/plugins/picture.ts";
 import tailwindcss from "lume/plugins/tailwindcss.ts";
@@ -29,6 +30,7 @@ const site = lume({
 site.use(date());
 // site.use(esbuild());
 site.use(favicon());
+site.use(jsonLd());
 site.use(jsx());
 site.use(feed({
   output: ["feed.rss", "feed.json"],

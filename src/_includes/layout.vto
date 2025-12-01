@@ -17,14 +17,6 @@
       title="{{metas.site}}"
       href="{{ 'feed.rss' |> url(true) }}"
     >
-    <script type="application/ld+json">
-      {
-        "@context": "http://schema.org",
-        "@type": "SoftwareApplication",
-        "name": {{ metas.site | json }},
-        "url": {{ metas.url | json }}
-      }
-    </script>
   </head>
   <body>
     <header data-pagefind-ignore="all">
