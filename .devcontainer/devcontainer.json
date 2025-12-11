@@ -1,7 +1,8 @@
 {
   "name": "Deno",
-  "build": {
-    "dockerfile": "Dockerfile"
+  "image": "mcr.microsoft.com/devcontainers/base:debian",
+  "features": {
+    "ghcr.io/devcontainers-community/features/deno:1": {}
   },
   "customizations": {
     "vscode": {
@@ -11,11 +12,9 @@
         "editor.defaultFormatter": "denoland.vscode-deno"
       },
       "extensions": [
-        "denoland.vscode-deno"
+        "denoland.vscode-deno",
+        "oscarotero.vento-syntax"
       ]
     }
-  },
-  "features": {
-    "ghcr.io/devcontainers/features/github-cli:1": {}
   }
 }
