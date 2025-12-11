@@ -13,7 +13,7 @@ import nav from "lume/plugins/nav.ts";
 import pagefind from "lume/plugins/pagefind.ts";
 import picture from "lume/plugins/picture.ts";
 import tailwindcss from "lume/plugins/tailwindcss.ts";
-// import prism from "lume/plugins/prism.ts";
+import prism from "lume/plugins/prism.ts";
 // import relations from "lume/plugins/relations.ts";
 import sitemap from "lume/plugins/sitemap.ts";
 import source_maps from "lume/plugins/source_maps.ts";
@@ -28,10 +28,16 @@ const site = lume({
 });
 
 site.use(date());
-// site.use(esbuild());
+site.use(esbuild());
 site.use(favicon());
 site.use(jsonLd());
 site.use(jsx());
+site.use(tailwindcss());
+site.use(source_maps());
+site.use(picture());
+site.use(transformImages());
+site.use(metas());
+site.use(inline());
 site.use(feed({
   output: ["feed.rss", "feed.json"],
   query: "noindex!=true",
@@ -41,24 +47,17 @@ site.use(feed({
   },
 }));
 // site.use(filter_pages({}));
-site.use(metas());
-// site.use(modifyUrls({
-//   fn: (url: string) => url.replace(/\.html$/, ""),
-// }))
+site.use(modifyUrls({ fn: (url: string) => url.replace(/\.html$/, "") }));
 site.use(nav());
 site.use(pagefind());
-site.use(tailwindcss());
-site.add("style/main.css");
-site.use(source_maps());
-site.use(picture());
-site.use(transformImages());
-site.add("/posts/files");
-site.use(inline());
-// site.use(prism());
+site.use(prism());
 // site.use(relations());
 site.use(sitemap({
   query: "noindex!=true",
 }));
 site.use(vento());
+
+site.add("style/main.css");
+site.add("/posts/files");
 
 export default site;
