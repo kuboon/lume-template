@@ -1,4 +1,4 @@
-layout: index.vto
+layout: ./_index.vto
 hero:
   title: CMSデモへようこそ
   content: |-
