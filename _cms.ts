@@ -18,7 +18,7 @@ const cms = lumeCMS({
 
 cms.storage(
   "src",
-  GitHub("kuboon/lume-template", Deno.env.get("GITHUB_TOKEN")!),
+  GitHub.create("kuboon/lume-template", Deno.env.get("GITHUB_TOKEN")!),
 );
 
 cms.storage("kv", kvStorage);
