@@ -38,3 +38,97 @@
   --depth: 0;
   --noise: 1;
 }
+
+/* Base Japanese typography */
+:where(:root) {
+  text-spacing-trim: trim-start;
+  text-autospace: normal;
+  line-break: strict;
+  overflow-wrap: anywhere;
+  font-kerning: none;
+}
+
+/* Japanese-specific typography */
+:where(h1, h2, h3, h4, h5, h6, caption) {
+  font-kerning: normal;
+  font-feature-settings: "palt";
+}
+
+:where(pre) {
+  text-spacing-trim: space-all;
+}
+
+:where(pre, time, input:not([type="button" i], [type="submit" i], [type="reset" i]), textarea, [contenteditable]) {
+  text-autospace: no-autospace;
+}
+
+/* Typography utilities */
+
+/* 中央寄せテキスト - 見出しやキャプションで使用 - 中央揃えで行のバランスを取る */
+.t-text-center {
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* テキストボックスのトリミング - 見出し周りの余白除去 - 設計デザインとの統一に */
+.t-trim-both {
+  text-box-trim: trim-both;
+}
+
+/* 英大文字変換 - 英単語や略語を大文字に - ロゴや強調表現に */
+.t-uppercase {
+  text-transform: uppercase;
+}
+
+/* 等幅数字 - 数字の幅を揃える - 価格表やデータ表示に */
+.t-tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* 日本語用手動改行 - 意図的な改行位置の制御 - 詩やキャッチコピーに */
+.t-br {
+  display: contents;
+}
+
+/* 日本語用単語区切り改行 - 長い見出しの改行位置最適化 - レスポンシブ対応に */
+.t-wbr {
+  display: inline flow-root;
+}
+
+/* 行数制限 - 長文の省略表示 - リード文や抜粋に */
+.t-line-clamp {
+  display: -webkit-box;
+  overflow-block: clip;
+  line-clamp: var(--t-line-clamp-limit, 3);
+  -webkit-box-orient: block-axis;
+
+  @supports not (overflow-block: clip) {
+    overflow-y: clip;
+  }
+}
+
+/* 流体タイポグラフィ - 画面サイズに応じた文字サイズ - 見出しや本文に */
+.t-fluid-text {
+  --t-min-width: var(--t-fluid-min-width, 375);
+  --t-max-width: var(--t-fluid-max-width, 1280);
+  --t-min-font-size: var(--t-fluid-min-font-size, 14);
+  --t-max-font-size: var(--t-fluid-max-font-size, 16);
+  --t-base-font-size: var(--t-fluid-base-font-size, 16);
+  --t-relative-unit: var(--t-fluid-relative-unit, 100svi);
+
+  --t-slope: calc(
+    (var(--t-max-font-size) - var(--t-min-font-size)) /
+      (var(--t-max-width) - var(--t-min-width))
+  );
+  --t-intercept: calc(
+    var(--t-min-font-size) - var(--t-slope) * var(--t-min-width)
+  );
+  --t-font-size: clamp(
+    var(--t-min-font-size) / var(--t-base-font-size) * 1rem,
+    var(--t-slope) * var(--t-relative-unit) + var(--t-intercept) /
+      var(--t-base-font-size) * 1rem,
+    var(--t-max-font-size) / var(--t-base-font-size) * 1rem
+  );
+
+  font-size: var(--t-font-size);
+}

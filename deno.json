@@ -21,6 +21,7 @@
     "jsxImportSource": "lume"
   },
   "imports": {
+    "@local/markdown-config/": "./packages/markdown-config/",
     "daisyui": "npm:daisyui@^5.5.14",
     "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@3.1.4/",
     "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@1.14.7/",
