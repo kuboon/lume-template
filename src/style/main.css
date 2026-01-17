@@ -58,7 +58,13 @@
   text-spacing-trim: space-all;
 }
 
-:where(pre, time, input:not([type="button" i], [type="submit" i], [type="reset" i]), textarea, [contenteditable]) {
+:where(
+  pre,
+  time,
+  input:not([type="button" i], [type="submit" i], [type="reset" i]),
+  textarea,
+  [contenteditable]
+) {
   text-autospace: no-autospace;
 }
 
@@ -117,16 +123,20 @@
   --t-relative-unit: var(--t-fluid-relative-unit, 100svi);
 
   --t-slope: calc(
-    (var(--t-max-font-size) - var(--t-min-font-size)) /
-      (var(--t-max-width) - var(--t-min-width))
+    (
+      var(--t-max-font-size) - var(--t-min-font-size)
+    )
+      / (
+      var(--t-max-width) - var(--t-min-width)
+    )
   );
   --t-intercept: calc(
     var(--t-min-font-size) - var(--t-slope) * var(--t-min-width)
   );
   --t-font-size: clamp(
     var(--t-min-font-size) / var(--t-base-font-size) * 1rem,
-    var(--t-slope) * var(--t-relative-unit) + var(--t-intercept) /
-      var(--t-base-font-size) * 1rem,
+    var(--t-slope) * var(--t-relative-unit)
+      + var(--t-intercept) / var(--t-base-font-size) * 1rem,
     var(--t-max-font-size) / var(--t-base-font-size) * 1rem
   );
 

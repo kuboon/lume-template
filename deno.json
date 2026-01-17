@@ -24,7 +24,7 @@
     "@local/markdown-config/": "./packages/markdown-config/",
     "daisyui": "npm:daisyui@^5.5.14",
     "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@3.1.4/",
-    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@1.14.7/",
+    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.14.11/",
     "lume/jsx-runtime": "https://cdn.jsdelivr.net/gh/oscarotero/ssx@0.1.14/jsx-runtime.ts"
   },
   "unstable": [
@@ -59,7 +59,8 @@
         "jsr.io:443",
         "cdn.jsdelivr.net:443",
         "data.jsdelivr.com:443",
-        "registry.npmjs.org:443"
+        "registry.npmjs.org:443",
+        "localhost"
       ],
       "env": true,
       "run": true,
